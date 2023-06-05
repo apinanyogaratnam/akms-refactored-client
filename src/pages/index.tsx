@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      {`hiya! Coming soon :)`}
+      {`hiya! Coming soon 🚀`}
     </main>
   )
 };
