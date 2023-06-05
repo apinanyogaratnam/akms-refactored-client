@@ -10,7 +10,7 @@ interface IProps {
 
 const Profile = (props: IProps) => {
     const { api_keys } = props;
-    console.log(api_keys);
+
     return (
         <div>
             <h1 className="mt-5 text-center text-xl font-bold">API Keys</h1>
@@ -44,7 +44,7 @@ export const getServerSideProps = async () => {
         },
     } as RequestInit);
     const data = await res.json();
-    console.log(data);
+
     return {
         props: {
             api_keys: data.api_keys,
