@@ -26,7 +26,9 @@ const Profile = (props: IProps) => {
                             <p className="text-sm md:text-md">{api_key.created_at}</p>
                         </div>
                         <div>
-                            <button className="bg-slate-100 text-red-500 border-2 border-bg-black px-2 py-1 rounded-md hover:bg-slate-200">Delete</button>
+                            <button className="bg-slate-100 text-red-500 border-2 border-bg-black px-2 py-1 rounded-md hover:bg-slate-200">
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -43,7 +45,7 @@ export const getServerSideProps = async () => {
             "X-API-KEY": process.env.API_KEY,
         },
     } as RequestInit);
-    const data = await res.json();
+    const data = (await res.json()) as IProps;
 
     return {
         props: {
