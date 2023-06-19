@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { RiShieldKeyholeFill } from "react-icons/ri";
 
 import Button from "./button";
@@ -45,9 +44,7 @@ const NavBar = () => {
             <div className="w-[35%]">
                 <div className="p-2 flex flex-row justify-center space-x-4">
                     <div className="p-2 text-lg hover:text-blue-600 cursor-pointer">Talk to an expert</div>
-                    <Link href="/signup">
-                        <Button />
-                    </Link>
+                    <Button />
                 </div>
             </div>
         </nav>

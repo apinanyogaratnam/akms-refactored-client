@@ -1,4 +1,6 @@
+import { CiCreditCardOff } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
+import { IoGiftOutline } from "react-icons/io5";
 
 import Button from "./button";
 
@@ -18,6 +20,20 @@ const MainContent = () => {
                     <span>
                         <IoIosArrowForward size="1.3em" className="mt-[2px]" />
                     </span>
+                </div>
+            </div>
+            <div className="flex flex-row justify-center items-center mt-5 space-x-4 text-slate-600">
+                <div className="flex flex-row items-center justify-center">
+                    <span>
+                        <CiCreditCardOff size="1.3em" className="mt-[2px]" />
+                    </span>
+                    No credit card required
+                </div>
+                <div className=" flex flex-row cursor-pointer">
+                    <span>
+                        <IoGiftOutline size="1.3em" className="mt-[2px]" />
+                    </span>
+                    FREE 10,000 minutes every month
                 </div>
             </div>
         </div>
