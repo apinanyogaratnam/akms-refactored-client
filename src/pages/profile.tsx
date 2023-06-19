@@ -15,9 +15,9 @@ const Profile = (props: IProps) => {
 
     return (
         <div>
-            <div className="flex flex-row items-center justify-center w-full md:w-[60%] mx-auto">
-                <h1 className="mt-5 text-center text-xl font-bold">API Keys</h1>
-                <h1 className="hidden sm:block">
+            <div className="flex flex-row items-center justify-between w-full p-2 md:w-[60%] mx-auto">
+                <h1 className="mt-5 ml-2 text-center text-xl font-bold">API Keys</h1>
+                {/* <h1 className="hidden sm:block">
                     small
                 </h1>
                 <h1 className="hidden md:block">
@@ -28,8 +28,8 @@ const Profile = (props: IProps) => {
                 </h1>
                 <h1 className="hidden xl:block">
                     extra large
-                </h1>
-                <button className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 hover:shadow-lg absolute right-0 mt-3 flex flex-row">
+                </h1> */}
+                <button className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 hover:shadow-lg flex flex-row">
                     <span>
                         <AiOutlinePlusCircle size="1.3em" className="mt-[3px]" />
                     </span>
