@@ -12,7 +12,7 @@ interface DialogProps {
 const DeleteAPIKeyDialog = (props: DialogProps) => {
     const { title, setOpen, api_key_id, api_key_title } = props;
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const router = useRouter();
 

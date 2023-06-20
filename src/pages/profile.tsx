@@ -18,8 +18,8 @@ interface IProps {
 
 const Profile = (props: IProps) => {
     const { api_keys } = props;
-    const [createAPIKeyDialogOpened, setCreateAPIKeyDialogOpened] = useState(false);
-    const [deleteAPIKeyDialogOpened, setDeleteAPIKeyDialogOpened] = useState(false);
+    const [createAPIKeyDialogOpened, setCreateAPIKeyDialogOpened] = useState<boolean>(false);
+    const [deleteAPIKeyDialogOpened, setDeleteAPIKeyDialogOpened] = useState<boolean>(false);
     const [selectedAPIKey, setSelectedAPIKey] = useState<{
         id: number;
         user_id: number;
