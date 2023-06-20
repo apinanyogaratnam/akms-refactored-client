@@ -2,8 +2,8 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-import CreateAPIKeyDialog from "@/components/create-api-key-dialog";
-import DeleteAPIKeyDialog from "@/components/delete-api-key-dialog";
+const CreateAPIKeyDialog = dynamic(() => import("@/components/create-api-key-dialog"));
+const DeleteAPIKeyDialog = dynamic(() => import("@/components/delete-api-key-dialog"));
 
 interface IProps {
     api_keys: {
