@@ -16,7 +16,7 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
 
     const router = useRouter();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (): Promise<void> => {
         const userId = 1;
         setIsLoading(true);
         try {
@@ -53,12 +53,12 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
                         </button>
                         <button
                             className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
-                            onClick={void handleSubmit}
+                            onClick={handleSubmit}
                         >
                             {isLoading ? (
                                 <div className="flex flex-row justify-center items-center space-x-2">
                                     <p>Deleting...</p>
-                                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
                                 </div>
                             ) : (
                                 "Delete"

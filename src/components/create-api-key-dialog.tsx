@@ -24,10 +24,11 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [api_key, setApiKey] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const router = useRouter();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (): Promise<void> => {
         if (!name) {
             return;
         }
@@ -35,6 +36,8 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
         if (!description) {
             return;
         }
+
+        setIsLoading(true);
 
         const userId = 1;
         try {
@@ -57,6 +60,8 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
             console.error(e);
             alert("Something went wrong!"); // TODO: use toast
         }
+
+        setIsLoading(false);
     };
 
     const copyToClipboard = async () => {
@@ -118,14 +123,21 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                         onClick={() => setOpen(false)}
                                         type="button"
                                     >
-                                        Close
+                                        Cancel
                                     </button>
                                     <button
                                         className="bg-blue-600 text-white rounded-md p-2 hover:bg-blue-700 w-full"
-                                        onClick={void handleSubmit}
+                                        onClick={handleSubmit}
                                         type="submit"
                                     >
-                                        Create API Key
+                                        {isLoading ? (
+                                            <div className="flex flex-row justify-center items-center space-x-2">
+                                                <p>Creating...</p>
+                                                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                                            </div>
+                                        ) : (
+                                            "Create"
+                                        )}
                                     </button>
                                 </div>
                             </form>
