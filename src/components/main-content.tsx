@@ -12,7 +12,7 @@ interface LogoImageProps {
 const LogoImage = (props: LogoImageProps) => {
     const { src, alt } = props;
 
-    return <img src={src} alt={alt} className="w-16" />;
+    return <img src={src} alt={alt} className="w-30 h-10" />;
 };
 
 const MainContent = () => {
@@ -53,26 +53,27 @@ const MainContent = () => {
             <div className="mt-20 border-2 border-gray-200 w-[80%] rounded-xl mx-auto overflow-hidden">
                 <img src="/preview.png" alt="preview" className="mt-3 w-full" />
             </div>
+            {/* THIS PART OF THE CODE IS VERY BUGGY */}
             <div className="relative flex flex-row overflow-x-hidden mt-7">
-                <div className="py-12 animate-marquee whitespace-nowrap">
+                <div className="py-12 animate-marquee whitespace-nowrap flex flex-row space-x-4">
                     <LogoImage src="/bitcoin-logo.png" alt="bitcoin" />
                     <LogoImage src="/facebook-logo.png" alt="facebook" />
                     <LogoImage src="/google-logo.png" alt="google" />
                     <LogoImage src="/instagram-logo.png" alt="instagram" />
                     <LogoImage src="/linux-logo.png" alt="linux" />
-                    <LogoImage src="/microsoft-logo.png" alt="microsoft" />
+                    {/* <LogoImage src="/microsoft-logo.png" alt="microsoft" />
                     <LogoImage src="/netflix-logo.png" alt="netflix" />
-                    <LogoImage src="/reddit-logo.png" alt="reddit" />
+                    <LogoImage src="/reddit-logo.png" alt="reddit" /> */}
                 </div>
-                <div className="py-12 animate-marquee whitespace-nowrap">
+                <div className="py-12 animate-marquee whitespace-nowrap flex flex-row space-x-4">
                     <LogoImage src="/bitcoin-logo.png" alt="bitcoin" />
                     <LogoImage src="/facebook-logo.png" alt="facebook" />
                     <LogoImage src="/google-logo.png" alt="google" />
                     <LogoImage src="/instagram-logo.png" alt="instagram" />
                     <LogoImage src="/linux-logo.png" alt="linux" />
-                    <LogoImage src="/microsoft-logo.png" alt="microsoft" />
+                    {/* <LogoImage src="/microsoft-logo.png" alt="microsoft" />
                     <LogoImage src="/netflix-logo.png" alt="netflix" />
-                    <LogoImage src="/reddit-logo.png" alt="reddit" />
+                    <LogoImage src="/reddit-logo.png" alt="reddit" /> */}
                 </div>
             </div>
             <div className="text-center mt-10 font-normal tracking-widest text-lg w-[35%] mx-auto text-slate-600">
