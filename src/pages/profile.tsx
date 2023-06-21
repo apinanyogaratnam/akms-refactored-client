@@ -57,9 +57,9 @@ const Profile = (props: IProps) => {
                 <div key={api_key.id} className="p-2 w-full md:w-[60%] mx-auto">
                     <div className="border-2 border-bg-slate-200 rounded-md p-2 flex flex-row justify-around items-center md:justify-between">
                         <div>
-                            <p className="text-sm md:text-xl min-w-[250px] max-w-[250px]">{
-                                api_key.name.length > 20 ? api_key.name.slice(0, 20) + "..." : api_key.name
-                            }</p>
+                            <p className="text-sm md:text-xl min-w-[250px] max-w-[250px]">
+                                {api_key.name.length > 20 ? api_key.name.slice(0, 20) + "..." : api_key.name}
+                            </p>
                             <p className="text-sm md:text-md">{api_key.description}</p>
                         </div>
                         <div>
