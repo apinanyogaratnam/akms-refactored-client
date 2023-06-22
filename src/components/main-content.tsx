@@ -1,7 +1,7 @@
+import Marquee from "react-fast-marquee";
 import { CiCreditCardOff } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoGiftOutline } from "react-icons/io5";
-import Marquee from "react-fast-marquee";
 
 import Button from "./button";
 

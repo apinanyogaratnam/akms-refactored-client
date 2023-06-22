@@ -1,8 +1,8 @@
 import Head from "next/head";
 
+import Footer from "@/components/footer";
 import MainContent from "@/components/main-content";
 import NavBar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 export default function Home() {
     return (
