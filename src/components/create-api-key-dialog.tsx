@@ -130,6 +130,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                     <button
                                         className="bg-blue-600 text-white rounded-md p-2 hover:bg-blue-700 w-full"
                                         onClick={handleSubmit}
+                                        disabled={isLoading}
                                         type="submit"
                                     >
                                         {isLoading ? <Spinner label="Creating..." /> : "Create"}
