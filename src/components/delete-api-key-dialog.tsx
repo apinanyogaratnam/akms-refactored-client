@@ -59,7 +59,7 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
                             onClick={handleSubmit}
                             disabled={isLoading}
                         >
-                            {isLoading ? <Spinner label="Deleting..." /> : "Delete"}
+                            {true ? <Spinner label="Deleting..." /> : "Delete"}
                         </button>
                     </div>
                 </div>
