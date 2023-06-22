@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import MainContent from "@/components/main-content";
 import NavBar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function Home() {
     return (
@@ -19,6 +20,7 @@ export default function Home() {
                 <hr className="border-1 border-slate-200 w-full" />
                 <MainContent />
             </main>
+            <Footer />
         </>
     );
 }

@@ -68,7 +68,6 @@ const MainContent = () => {
                 <LogoImage src="/netflix-logo.png" alt="netflix" />
                 <LogoImage src="/reddit-logo.png" alt="reddit" />
             </Marquee>
-
             <div className="text-center mt-10 font-normal tracking-widest text-lg w-[35%] mx-auto text-slate-600">
                 CUSTOMIZABLE
             </div>
