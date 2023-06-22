@@ -120,21 +120,21 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
-                                <div className="flex flex-row items-center justify-end w-full space-x-4">
-                                    <button
-                                        className="bg-red-500 text-white rounded-md p-2 hover:bg-red-600 w-full"
-                                        onClick={() => setOpen(false)}
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
-                                        onClick={handleSubmit}
-                                        disabled={isLoading}
-                                    >
-                                        {isLoading ? <Spinner label="Creating..." /> : "Create"}
-                                    </button>
-                                </div>
+                            </div>
+                            <div className="flex flex-row items-center justify-end w-full space-x-4">
+                                <button
+                                    className="bg-red-500 text-white rounded-md p-2 hover:bg-red-600 w-full"
+                                    onClick={() => setOpen(false)}
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
+                                    onClick={handleSubmit}
+                                    disabled={isLoading}
+                                >
+                                    {true ? <Spinner label="Creating..." /> : "Create"}
+                                </button>
                             </div>
                         </>
                     )}
