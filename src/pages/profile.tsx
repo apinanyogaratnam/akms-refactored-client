@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+
 
 const CreateAPIKeyDialog = dynamic(() => import("@/components/create-api-key-dialog"));
 const DeleteAPIKeyDialog = dynamic(() => import("@/components/delete-api-key-dialog"));
@@ -27,6 +29,8 @@ const Profile = (props: IProps) => {
         name: string;
         description: string;
     } | null>(null);
+
+    if (!api_keys) return <div>Loading...</div>;
 
     return (
         <div>
@@ -86,6 +90,16 @@ const Profile = (props: IProps) => {
 
 // TODO: convert this to /api route
 export const getServerSideProps = async () => {
+    const isAuthenticated = true;
+    if (!isAuthenticated) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        };
+    }
+
     const res = await fetch("https://akms-service.vercel.app/users/1/api-keys", {
         method: "GET",
         headers: {
