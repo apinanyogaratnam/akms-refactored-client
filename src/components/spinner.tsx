@@ -1,15 +1,24 @@
 interface IProps {
     label?: string;
+    showLabel?: boolean;
+    original?: boolean;
+    color?: string;
 }
 
 const Spinner = (props: IProps) => {
-    const { label = "Loading..." } = props;
+    const { label = "Loading...", showLabel = true, original = false } = props;
+
+    const fullWheelColor = original ? "gray-200" : "blue-600";
+    const halfWheelColor = original ? "blue-600" : "white";
+    const baseClass = `mr-2 text-${fullWheelColor} animate-spin fill-${halfWheelColor}`;
+    const originalClass = `${baseClass} w-8 h-8`;
+    const newClass = `${baseClass} w-4 h-4`;
 
     return (
         <div role="status" className="flex flex-row items-center justify-center">
             <svg
                 aria-hidden="true"
-                className="w-4 h-4 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                className={original ? originalClass : newClass}
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +32,7 @@ const Spinner = (props: IProps) => {
                     fill="currentFill"
                 />
             </svg>
-            <span className="text-white">{label}</span>
+            {showLabel && <span className="text-white">{label}</span>}
         </div>
     );
 };
