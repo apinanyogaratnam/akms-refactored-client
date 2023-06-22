@@ -8,22 +8,14 @@ interface IProps {
 const Spinner = (props: IProps) => {
     const { label = "Loading...", showLabel = true, original = false } = props;
 
-    const fullWheelColor = original ? "gray-200" : "blue-600";
-    const halfWheelColor = original ? "blue-600" : "white";
-    const baseClass = `mr-2 text-${fullWheelColor} animate-spin fill-${halfWheelColor}`;
-    const originalClass = `${baseClass} w-8 h-8`;
-    const newClass = `${baseClass} w-4 h-4`;
-
-    const mainWrapper = original
-        ? "flex flex-row justify-center items-center"
-        : "flex flex-row justify-between items-center w-[45%] mx-auto";
+    const svgClass = original ? "inline w-8 h-8 mr-3 text-blue-600 animate-spin" : "inline w-4 h-4 mr-3 text-white animate-spin"
 
     return (
         <div className="text-white font-medium rounded-lg text-center mr-2 items-center flex justify-center h-full">
             <svg
                 aria-hidden="true"
                 role="status"
-                className="inline w-4 h-4 mr-3 text-white animate-spin"
+                className={svgClass}
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
