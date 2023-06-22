@@ -133,7 +133,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                     onClick={handleSubmit}
                                     disabled={isLoading}
                                 >
-                                    {true ? <Spinner label="Creating..." /> : "Create"}
+                                    {isLoading ? <Spinner label="Creating..." /> : "Create"}
                                 </button>
                             </div>
                         </>
