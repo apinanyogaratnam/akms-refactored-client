@@ -1,6 +1,9 @@
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
+import Spinner from "./spinner";
 
 interface DialogProps {
     title: string;
@@ -14,7 +17,7 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const router = useRouter();
+    const queryClient = useQueryClient();
 
     const handleSubmit = async (): Promise<void> => {
         const userId = 1;
@@ -26,7 +29,7 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
                     "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
                 },
             });
-            await router.replace(router.asPath);
+            await queryClient.invalidateQueries(["api_keys"]);
             setOpen(false);
         } catch (e) {
             console.error(e);
@@ -55,14 +58,7 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
                             className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
                             onClick={handleSubmit}
                         >
-                            {isLoading ? (
-                                <div className="flex flex-row justify-center items-center space-x-2">
-                                    <p>Deleting...</p>
-                                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
-                                </div>
-                            ) : (
-                                "Delete"
-                            )}
+                            {isLoading ? <Spinner label="Deleting..." /> : "Delete"}
                         </button>
                     </div>
                 </div>

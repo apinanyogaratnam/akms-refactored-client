@@ -1,7 +1,9 @@
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { LuCopy } from "react-icons/lu";
+
+import Spinner from "./spinner";
 
 interface DialogProps {
     title: string;
@@ -26,7 +28,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
     const [api_key, setApiKey] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const router = useRouter();
+    const queryClient = useQueryClient();
 
     const handleSubmit = async (): Promise<void> => {
         if (!name) {
@@ -54,7 +56,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                     },
                 },
             )) as unknown as AxiosResponse;
-            await router.replace(router.asPath);
+            await queryClient.invalidateQueries(["api_keys"]);
             setApiKey(data.api_key);
         } catch (e) {
             console.error(e);
@@ -130,14 +132,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                         onClick={handleSubmit}
                                         type="submit"
                                     >
-                                        {isLoading ? (
-                                            <div className="flex flex-row justify-center items-center space-x-2">
-                                                <p>Creating...</p>
-                                                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                                            </div>
-                                        ) : (
-                                            "Create"
-                                        )}
+                                        {isLoading ? <Spinner label="Creating..." /> : "Create"}
                                     </button>
                                 </div>
                             </form>
