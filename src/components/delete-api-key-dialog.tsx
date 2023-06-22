@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 import Spinner from "./spinner";
 
@@ -33,7 +33,7 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
             setOpen(false);
         } catch (e) {
             console.error(e);
-            alert("Something went wrong!"); // TODO: use toast
+            toast.error("Something went wrong");
         }
         setIsLoading(false);
     };

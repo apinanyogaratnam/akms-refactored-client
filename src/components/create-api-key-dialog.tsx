@@ -2,6 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { LuCopy } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 import Spinner from "./spinner";
 
@@ -60,7 +61,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
             setApiKey(data.api_key);
         } catch (e) {
             console.error(e);
-            alert("Something went wrong!"); // TODO: use toast
+            toast.error("Something went wrong!");
         }
 
         setIsLoading(false);
@@ -68,7 +69,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
 
     const copyToClipboard = async () => {
         await navigator.clipboard.writeText(api_key);
-        alert("Copied to clipboard!"); // TODO: use toast
+        toast.success("Copied to clipboard!");
     };
 
     return (
@@ -102,7 +103,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                     ) : (
                         <>
                             <h1 className="text-xl font-bold">{title}</h1>
-                            <form className="flex flex-col space-y-2 w-full" onSubmit={(e) => e.preventDefault()}>
+                            <div className="flex flex-col space-y-2 w-full">
                                 <input
                                     type="text"
                                     className="border-2 border-gray-300 rounded-md p-2 w-full"
@@ -119,24 +120,22 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
-                                <div className="flex flex-row justify-between items-center space-x-2 w-full">
+                                <div className="flex flex-row items-center justify-end w-full space-x-4">
                                     <button
                                         className="bg-red-500 text-white rounded-md p-2 hover:bg-red-600 w-full"
                                         onClick={() => setOpen(false)}
-                                        type="button"
                                     >
                                         Cancel
                                     </button>
                                     <button
-                                        className="bg-blue-600 text-white rounded-md p-2 hover:bg-blue-700 w-full"
+                                        className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
                                         onClick={handleSubmit}
                                         disabled={isLoading}
-                                        type="submit"
                                     >
-                                        {isLoading ? <Spinner label="Creating..." /> : "Create"}
+                                        {isLoading ? <Spinner label="Creating..." /> : "Delete"}
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                         </>
                     )}
                 </div>
