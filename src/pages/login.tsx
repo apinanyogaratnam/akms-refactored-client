@@ -8,7 +8,7 @@ const Login = () => {
             <button
                 className="bg-blue-600 text-white p-5 rounded-lg"
                 onClick={() => {
-                    void router.push("/profile");
+                    // void router.push("/profile");
                 }}
             >
                 Login
