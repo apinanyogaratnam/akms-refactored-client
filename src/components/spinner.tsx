@@ -10,10 +10,10 @@ interface IProps {
 const Spinner = (props: IProps) => {
     const { label = "Loading...", showLabel = true, original = false } = props;
 
-    const color = original ? "rgb(37 99 235)" : "#ffffff"
+    const color = original ? "rgb(37 99 235)" : "#ffffff";
 
     return (
-        <div className="flex flex-row justify-center items-center space-x-2">
+        <div className="flex flex-row items-center justify-center space-x-2">
             <SpinnerCircularFixed
                 size={original ? 40 : 20}
                 thickness={100}

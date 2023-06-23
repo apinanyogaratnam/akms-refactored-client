@@ -5,7 +5,7 @@ const Pricing = () => {
     return (
         <>
             <NavBar />
-            <hr className="border-1 border-slate-200 w-full" />
+            <hr className="border-1 w-full border-slate-200" />
             <PricingMainContent />
         </>
     );

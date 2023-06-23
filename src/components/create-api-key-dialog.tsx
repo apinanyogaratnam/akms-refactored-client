@@ -73,17 +73,17 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-row justify-center items-center">
-            <div className="bg-white rounded-lg p-5 w-[35%]">
-                <div className="flex flex-col justify-between items-center space-y-4 w-full">
+        <div className="fixed left-0 top-0 flex h-full w-full flex-row items-center justify-center bg-black bg-opacity-50">
+            <div className="w-[35%] rounded-lg bg-white p-5">
+                <div className="flex w-full flex-col items-center justify-between space-y-4">
                     {!!api_key ? (
                         <>
                             <h1 className="text-xl font-bold">{"Here's your API Key"}</h1>
-                            <div className="flex flex-row justify-center items-center space-x-2 w-full">
-                                <div className="text-lg border-2 border-gray-200 p-2 rounded-md flex flex-row justify-between items-center space-x-4 w-full h-9">
+                            <div className="flex w-full flex-row items-center justify-center space-x-2">
+                                <div className="flex h-9 w-full flex-row items-center justify-between space-x-4 rounded-md border-2 border-gray-200 p-2 text-lg">
                                     <p>{api_key}</p>
                                     <div
-                                        className="text-gray-500 rounded-md hover:shadow-lg hover:text-gray-700 cursor-pointer h-5"
+                                        className="h-5 cursor-pointer rounded-md text-gray-500 hover:text-gray-700 hover:shadow-lg"
                                         onClick={void copyToClipboard}
                                     >
                                         <LuCopy size="1.2em" />
@@ -94,7 +94,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                 {"Please save this API Key somewhere safe. You won't be able to see it again."}
                             </p>
                             <button
-                                className="bg-red-500 text-white rounded-md p-2 hover:bg-red-600"
+                                className="rounded-md bg-red-500 p-2 text-white hover:bg-red-600"
                                 onClick={() => setOpen(false)}
                             >
                                 Close
@@ -103,10 +103,10 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                     ) : (
                         <>
                             <h1 className="text-xl font-bold">{title}</h1>
-                            <div className="flex flex-col space-y-2 w-full">
+                            <div className="flex w-full flex-col space-y-2">
                                 <input
                                     type="text"
-                                    className="border-2 border-gray-300 rounded-md p-2 w-full"
+                                    className="w-full rounded-md border-2 border-gray-300 p-2"
                                     placeholder="Name"
                                     value={name}
                                     required
@@ -114,22 +114,22 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                                 />
                                 <input
                                     type="text"
-                                    className="border-2 border-gray-300 rounded-md p-2"
+                                    className="rounded-md border-2 border-gray-300 p-2"
                                     placeholder="Description"
                                     value={description}
                                     required
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
                             </div>
-                            <div className="flex flex-row items-center justify-end w-full space-x-4">
+                            <div className="flex w-full flex-row items-center justify-end space-x-4">
                                 <button
-                                    className="bg-red-500 text-white rounded-md p-2 hover:bg-red-600 w-full"
+                                    className="w-full rounded-md bg-red-500 p-2 text-white hover:bg-red-600"
                                     onClick={() => setOpen(false)}
                                 >
                                     Cancel
                                 </button>
                                 <button
-                                    className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
+                                    className="w-full rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
                                     onClick={handleSubmit}
                                     disabled={isLoading}
                                 >

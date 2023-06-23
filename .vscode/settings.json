@@ -1,3 +1,16 @@
 {
-    "cSpell.words": ["AKMS", "extralight", "signup", "tailwindcss", "tanstack", "toastify"]
+    "cSpell.words": [
+        "AKMS",
+        "CLIENTVAR",
+        "extralight",
+        "middlewares",
+        "NEXTAUTH",
+        "nextjs",
+        "runtimes",
+        "signup",
+        "tailwindcss",
+        "tanstack",
+        "toastify",
+        "trpc"
+    ]
 }

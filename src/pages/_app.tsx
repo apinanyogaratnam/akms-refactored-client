@@ -1,15 +1,24 @@
-import "@/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import type { AppProps } from "next/app";
+import { type AppType } from "next/app";
+import { type Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 
-const queryClient = new QueryClient();
+import { api } from "@/utils/api";
 
-export default function App({ Component, pageProps }: AppProps) {
+import "@/styles/globals.css";
+
+const MyApp: AppType<{ session: Session | null }> = ({ Component, pageProps: { session, ...pageProps } }) => {
+    const queryClient = new QueryClient();
+
     return (
-        <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />
+        <SessionProvider session={session}>
+            <QueryClientProvider client={queryClient}>
+                <Component {...pageProps} />
+            </QueryClientProvider>
             <ToastContainer autoClose={1500} closeOnClick={true} />
-        </QueryClientProvider>
+        </SessionProvider>
     );
-}
+};
+
+export default api.withTRPC(MyApp);

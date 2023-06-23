@@ -39,23 +39,23 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-row justify-center items-center">
-            <div className="bg-white rounded-lg p-5 w-[30%]">
-                <div className="flex flex-col justify-between items-center space-y-4 w-full">
+        <div className="fixed left-0 top-0 flex h-full w-full flex-row items-center justify-center bg-black bg-opacity-50">
+            <div className="w-[30%] rounded-lg bg-white p-5">
+                <div className="flex w-full flex-col items-center justify-between space-y-4">
                     <h1 className="text-xl font-bold">{title}</h1>
-                    <p className="text-gray-500 text-center">
+                    <p className="text-center text-gray-500">
                         Are you sure you want to delete <span className="font-semibold">{api_key_title}</span>? This
                         action cannot be undone.
                     </p>
-                    <div className="flex flex-row items-center justify-end w-full space-x-4">
+                    <div className="flex w-full flex-row items-center justify-end space-x-4">
                         <button
-                            className="bg-red-500 text-white rounded-md p-2 hover:bg-red-600 w-full"
+                            className="w-full rounded-md bg-red-500 p-2 text-white hover:bg-red-600"
                             onClick={() => setOpen(false)}
                         >
                             Cancel
                         </button>
                         <button
-                            className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 w-full"
+                            className="w-full rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
                             onClick={handleSubmit}
                             disabled={isLoading}
                         >

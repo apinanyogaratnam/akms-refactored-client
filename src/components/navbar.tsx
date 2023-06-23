@@ -18,7 +18,7 @@ const NavItem = (props: IProps) => {
     const { title, downArrow = true, href = "/" } = props;
 
     return (
-        <Link className="text-lg font-medium hover:text-blue-600 cursor-pointer flex flex-row items-center" href={href}>
+        <Link className="flex cursor-pointer flex-row items-center text-lg font-medium hover:text-blue-600" href={href}>
             {title}
             <span>{downArrow && <MdKeyboardArrowDown size="1.5em" />}</span>
         </Link>
@@ -27,15 +27,15 @@ const NavItem = (props: IProps) => {
 
 const NavBar = () => {
     return (
-        <nav className="flex flex-row justify-between items-center h-20">
-            <div className="w-[60%] flex flex-row justify-between items-center">
-                <Link className="flex flex-row justify-center items-center p-2 text-3xl w-[30%]" href="/">
+        <nav className="flex h-20 flex-row items-center justify-between">
+            <div className="flex w-[60%] flex-row items-center justify-between">
+                <Link className="flex w-[30%] flex-row items-center justify-center p-2 text-3xl" href="/">
                     <span>
                         <RiShieldKeyholeFill size="1.1em" className="text-blue-600" />
                     </span>
                     AKMS
                 </Link>
-                <div className="flex flex-row justify-between w-[80%]">
+                <div className="flex w-[80%] flex-row justify-between">
                     <NavItem title="Products" />
                     <NavItem title="Developer" />
                     <NavItem title="Resources" />
@@ -44,8 +44,8 @@ const NavBar = () => {
                 </div>
             </div>
             <div className="w-[35%]">
-                <div className="p-2 flex flex-row justify-center space-x-4">
-                    <div className="p-2 text-lg hover:text-blue-600 cursor-pointer">Talk to an expert</div>
+                <div className="flex flex-row justify-center space-x-4 p-2">
+                    <div className="cursor-pointer p-2 text-lg hover:text-blue-600">Talk to an expert</div>
                     <Button />
                 </div>
             </div>

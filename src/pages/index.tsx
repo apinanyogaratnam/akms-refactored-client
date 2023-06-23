@@ -3,8 +3,11 @@ import Head from "next/head";
 import Footer from "@/components/footer";
 import MainContent from "@/components/main-content";
 import NavBar from "@/components/navbar";
+import { api } from "@/utils/api";
 
 export default function Home() {
+    const hello = api.example.hello.useQuery({ text: "from tRPC" });
+
     return (
         <>
             <Head>
@@ -17,7 +20,7 @@ export default function Home() {
             </Head>
             <main>
                 <NavBar />
-                <hr className="border-1 border-slate-200 w-full" />
+                <hr className="border-1 w-full border-slate-200" />
                 <MainContent />
             </main>
             <Footer />
