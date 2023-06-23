@@ -13,13 +13,7 @@ import { getAPIKeys } from "@/utils/utils";
 const CreateAPIKeyDialog = dynamic(() => import("@/components/create-api-key-dialog"));
 const DeleteAPIKeyDialog = dynamic(() => import("@/components/delete-api-key-dialog"));
 
-interface IProps {
-    session: Session;
-}
-
-const Profile = (props: IProps) => {
-    const { session } = props;
-
+const Profile = () => {
     const [APIKeys, setAPIKeys] = useState<APIKey[]>([]);
     const [createAPIKeyDialogOpened, setCreateAPIKeyDialogOpened] = useState<boolean>(false);
     const [deleteAPIKeyDialogOpened, setDeleteAPIKeyDialogOpened] = useState<boolean>(false);
