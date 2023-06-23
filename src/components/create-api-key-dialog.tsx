@@ -44,19 +44,10 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
 
         const userId = 1;
         try {
-            const { data } = (await axios.post(
-                `https://akms-service.vercel.app/users/${userId}/create-api-key`,
-                {
-                    name,
-                    description,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-                    },
-                },
-            )) as unknown as AxiosResponse;
+            const { data }: AxiosResponse = await axios.post(`/api/create-api-key?userId=${userId}`, {
+                name,
+                description,
+            });
             await queryClient.invalidateQueries(["api_keys"]);
             setApiKey(data.api_key);
         } catch (e) {

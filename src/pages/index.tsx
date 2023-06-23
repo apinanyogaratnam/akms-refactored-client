@@ -3,11 +3,8 @@ import Head from "next/head";
 import Footer from "@/components/footer";
 import MainContent from "@/components/main-content";
 import NavBar from "@/components/navbar";
-import { api } from "@/utils/api";
 
 export default function Home() {
-    const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
     return (
         <>
             <Head>
