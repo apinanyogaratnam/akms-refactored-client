@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import { type Session } from "next-auth";
 import { type GetSessionParams, getSession } from "next-auth/react";
 import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
