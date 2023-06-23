@@ -11,6 +11,10 @@
         "tailwindcss",
         "tanstack",
         "toastify",
-        "trpc"
-    ]
+        "trpc",
+        "unoptimized"
+    ],
+    "files.readonlyInclude": {
+        "**/node_modules/**": true,
+    }
 }
