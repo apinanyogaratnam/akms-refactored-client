@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { CiCreditCardOff } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
@@ -15,7 +16,7 @@ const LogoImage = (props: LogoImageProps) => {
 
     return (
         <div className="mx-4">
-            <img src={src} alt={alt} className="w-[150px]" />
+            <Image src={src} alt={alt} className="w-[150px]" width={150} height={150} />
         </div>
     );
 };
@@ -56,7 +57,15 @@ const MainContent = () => {
                 TRUSTED ACROSS INDUSTRIES
             </h1>
             <div className="mx-auto mt-20 w-[60%] overflow-hidden rounded-xl border-2 border-gray-200">
-                <img src="/preview.png" alt="preview" className="mt-3 w-full" />
+                <Image
+                    src="/preview.png"
+                    alt="preview"
+                    className="mt-3 w-full"
+                    width={200}
+                    height={200}
+                    unoptimized={true}
+                    loading="lazy"
+                />
             </div>
             <Marquee speed={25} className="fixed mt-10">
                 <LogoImage src="/bitcoin-logo.png" alt="bitcoin" />
