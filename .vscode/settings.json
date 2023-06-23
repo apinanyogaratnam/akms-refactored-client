@@ -15,6 +15,6 @@
         "unoptimized"
     ],
     "files.readonlyInclude": {
-        "**/node_modules/**": true,
+        "**/node_modules/**": true
     }
 }
