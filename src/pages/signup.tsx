@@ -53,7 +53,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             name: session.user.name,
         })) as unknown as Response;
         console.log("create user response", data);
-        return { redirect: { destination: "/profile" } };
+        return { redirect: { destination: "/projects" } };
     }
 
     const providers = await getProviders();
