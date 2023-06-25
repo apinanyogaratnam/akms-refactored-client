@@ -1,3 +1,7 @@
+import CreateProjectDialog from "@/components/create-project-dialog";
+import { useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+
 const images = [
     "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg",
     "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg",
@@ -7,9 +11,10 @@ const images = [
 ];
 
 type Project = {
-    id?: number;
+    id?: string;
     name: string;
     description: string;
+    logo: string;
 };
 
 interface IProps {
@@ -18,16 +23,17 @@ interface IProps {
 
 const ProjectCard = (props: IProps) => {
     const { project } = props;
+
     return (
-        <div className="w-full rounded-md border-2 border-gray-200 p-2">
-            <div className="flex flex-col space-y-2">
+        <div className="w-full cursor-pointer rounded-md border-2 border-gray-200 p-2 hover:bg-gray-50 md:w-1/4">
+            <div className="flex flex-col space-y-4">
                 <div className="">
-                    <div className="flex flex-row space-x-2">
-                        <div className="flex h-20 w-20 flex-row items-center justify-center rounded-lg border-2 border-blue-300">
-                            <img src="https://robohash.org/pfp.png" alt="img1" className="h-10 w-10 rounded-full" />
+                    <div className="flex flex-row space-x-4">
+                        <div className="h-15 w-20 overflow-hidden rounded-lg border-2 border-blue-300">
+                            <img src={project.logo} alt="img1" className="h-15 w-20 rounded-full" />
                         </div>
-                        <div>
-                            <div className="flex justify-center text-lg">{project.name}</div>
+                        <div className="w-full">
+                            <div className="w-full text-2xl">{project.name}</div>
                             <div className="flex flex-row items-center space-x-1">
                                 {images.slice(0, 3).map((src) => {
                                     return (
@@ -45,12 +51,13 @@ const ProjectCard = (props: IProps) => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    This is the project description and it can be a little long. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Donec
+                <div className="text-gray-500">
+                    {project.description.length > 85 ? project.description.slice(0, 85) + "..." : project.description}
                 </div>
+                <div className="border-[1px] border-dashed border-gray-200" />
                 <div>
-                    Date Created: <span className="text-gray-500">2021-08-01</span>
+                    <div className="text-gray-500">2021-08-01</div>
+                    <div className="text-sm">Date created</div>
                 </div>
             </div>
         </div>
@@ -69,42 +76,49 @@ const Projects = () => {
     //     refetchOnWindowFocus: false,
     // });
 
+    const [createProjectDialogOpened, setCreateProjectDialogOpened] = useState<boolean>(false);
+
     return (
-        <div className="p-10">
-            <h1 className="text-5xl">Projects</h1>
-            <div className="mt-5 flex flex-row items-stretch space-x-2">
-                <div className="w-1/4">
+        <>
+            <div>
+                {createProjectDialogOpened && (
+                    <CreateProjectDialog userId={1} title="Create Project" setOpen={setCreateProjectDialogOpened} />
+                )}
+            </div>
+            <div className="p-10">
+                <h1 className="text-5xl">Projects</h1>
+                <div className="mt-5 flex flex-col items-stretch space-y-2 md:flex-row md:space-x-5 md:space-y-0">
                     <ProjectCard
                         project={{
                             name: "Project 1",
                             description:
                                 "This is the project description and it can be a little long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec",
+                            logo: "https://robohash.org/pfp1.png",
                         }}
                     />
-                </div>
-                <div className="w-1/4">
                     <ProjectCard
                         project={{
                             name: "Project 2",
                             description:
                                 "This is the project description and it can be a little long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec",
+                            logo: "https://robohash.org/pfp2.png",
                         }}
                     />
-                </div>
-                <div className="w-1/4">
                     <ProjectCard
                         project={{
                             name: "Project 3",
                             description:
                                 "This is the project description and it can be a little long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec",
+                            logo: "https://robohash.org/pfp3.png",
                         }}
                     />
-                </div>
-                <div className="w-1/4 flex-grow flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-2">
-                    <button className="">+ New project</button>
+                    <button className="flex w-1/4 flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-2 hover:bg-gray-50" onClick={() => setCreateProjectDialogOpened(true)}>
+                        <AiOutlinePlus className="text-4xl" />
+                        <p className="text-gray-500">New project</p>
+                    </button>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -1,14 +1,16 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
+import { env } from "@/env.mjs";
+
 export const authOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID || "",
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+            clientId: env.GOOGLE_CLIENT_ID || "",
+            clientSecret: env.GOOGLE_CLIENT_SECRET || "",
         }),
     ],
-    secret: process.env.JWT_SECRET,
+    secret: env.NEXTAUTH_SECRET,
     pages: {
         signIn: "/signup",
     },

@@ -6,6 +6,8 @@ import { getServerSession } from "next-auth";
 import { getProviders, signIn } from "next-auth/react";
 
 import { type Response } from "@/types/response";
+import { createUser } from "@/utils/create-user";
+import { getUser } from "@/utils/get-user";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 
@@ -47,12 +49,14 @@ const Signup = ({ providers }: InferGetServerSidePropsType<typeof getServerSideP
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const session = await getServerSession(context.req, context.res, authOptions);
 
-    if (session) {
-        const { data } = (await axios.post("http://localhost:3000/api/create-user", {
-            email: session.user.email,
-            name: session.user.name,
-        })) as unknown as Response;
-        console.log("create user response", data);
+    if (session && session.user && session.user.email && session.user.name) {
+        const user = await getUser(session.user.email);
+        if (!user) {
+            await createUser({
+                email: session.user.email,
+                name: session.user.name,
+            });
+        }
         return { redirect: { destination: "/projects" } };
     }
 

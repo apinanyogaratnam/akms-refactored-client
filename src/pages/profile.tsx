@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 import Spinner from "@/components/spinner";
 import { type APIKey, type APIKeys } from "@/types/api-keys";
-import { getAPIKeys } from "@/utils/utils";
+import { getAPIKeys } from "@/utils/get-api-keys";
 
 const CreateAPIKeyDialog = dynamic(() => import("@/components/create-api-key-dialog"));
 const DeleteAPIKeyDialog = dynamic(() => import("@/components/delete-api-key-dialog"));
@@ -102,7 +102,7 @@ const Profile = () => {
                             ))}
                         </>
                     ) : (
-                        <div className="flex flex-row justify-center mt-10">
+                        <div className="mt-10 flex flex-row justify-center">
                             <p className="text-xl">API Keys will appear here</p>
                         </div>
                     )}

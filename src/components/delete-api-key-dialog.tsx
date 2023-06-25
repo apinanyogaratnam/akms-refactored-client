@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+import { env } from "@/env.mjs";
+
 import Spinner from "./spinner";
 
 interface DialogProps {
@@ -23,10 +25,11 @@ const DeleteAPIKeyDialog = (props: DialogProps) => {
         const userId = 1;
         setIsLoading(true);
         try {
+            // TODO: create middleware endpoint for this
             await axios.delete(`https://akms-service.vercel.app/users/${userId}/api-keys/${api_key_id}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+                    "X-API-KEY": env.NEXT_PUBLIC_API_KEY,
                 },
             });
             await queryClient.invalidateQueries(["api_keys"]);

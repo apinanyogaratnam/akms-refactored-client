@@ -1,6 +1,7 @@
 import axios, { type AxiosResponse } from "axios";
 import { type NextApiRequest, type NextApiResponse } from "next";
 
+import { env } from "@/env.mjs";
 import { type APIKeys } from "@/types/api-keys";
 import { type Response } from "@/types/response";
 
@@ -26,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         {
             headers: {
                 "Content-Type": "application/json",
-                "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+                "X-API-KEY": env.NEXT_PUBLIC_API_KEY,
             },
         },
     )) as unknown as AxiosResponse<APIKeys>;
