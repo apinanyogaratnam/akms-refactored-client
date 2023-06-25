@@ -52,7 +52,7 @@ const ProjectCard = (props: IProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="text-gray-500 min-h-[50px]">
+                <div className="min-h-[50px] text-gray-500">
                     {project.description.length > 85 ? project.description.slice(0, 85) + "..." : project.description}
                 </div>
                 <div className="border-[1px] border-dashed border-gray-200" />
@@ -99,7 +99,7 @@ const Projects = () => {
                 ) : (
                     <div className="mt-5 flex flex-col items-stretch space-y-2 md:flex-row md:space-x-5 md:space-y-0">
                         {(projects || []).map((project) => {
-                            console.log(project)
+                            console.log(project);
                             return (
                                 <ProjectCard
                                     key={project.id}

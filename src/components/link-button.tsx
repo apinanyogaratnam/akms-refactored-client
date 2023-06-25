@@ -8,8 +8,6 @@ interface IProps {
     onClick?: () => void;
 }
 
-
-
 const LinkButton = (props: IProps) => {
     const { label = "Start Building", href = "/signup" } = props;
     return (
