@@ -26,12 +26,16 @@ const ProjectCard = (props: IProps) => {
     const { project } = props;
 
     return (
-        <div className="w-full cursor-pointer rounded-md border-2 border-gray-200 p-2 hover:bg-gray-50 md:w-1/4">
+        <div className="w-full cursor-pointer rounded-md border-2 border-gray-200 p-2 hover:bg-gray-50 max-h-[250px] min-h-[250px]">
             <div className="flex flex-col space-y-4">
                 <div className="">
                     <div className="flex flex-row space-x-4">
                         <div className="h-15 w-20 overflow-hidden rounded-lg border-2 border-blue-300">
-                            <img src={project.logo_url || `https://robohash.org/${project.name}.png`} alt="img1" className="h-15 w-20 rounded-full" />
+                            <img
+                                src={project.logo_url || `https://robohash.org/${project.name}.png`}
+                                alt="img1"
+                                className="h-15 w-20 rounded-full"
+                            />
                         </div>
                         <div className="w-full">
                             <div className="w-full text-2xl">{project.name}</div>
@@ -52,7 +56,7 @@ const ProjectCard = (props: IProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="min-h-[50px] text-gray-500">
+                <div className="min-h-[70px] max-h-[70px] text-gray-500">
                     {project.description.length > 85 ? project.description.slice(0, 85) + "..." : project.description}
                 </div>
                 <div className="border-[1px] border-dashed border-gray-200" />
@@ -97,26 +101,25 @@ const Projects = () => {
                 {isLoading || isFetching || isRefetching ? (
                     <Spinner original showLabel={false} />
                 ) : (
-                    <div className="mt-5 flex flex-col items-stretch space-y-2 md:flex-row md:space-x-5 md:space-y-0">
+                    <div className="mt-5 md:grid md:grid-cols-4 flex-col items-stretch space-y-2 md:flex-row md:gap-5 md:space-y-0">
                         {(projects || []).map((project) => {
-                            console.log(project);
                             return (
-                                <ProjectCard
-                                    key={project.id}
-                                    project={{
-                                        id: project.id,
-                                        name: project.name,
-                                        description: project.description,
-                                        logo_url: project.logo_url,
-                                        created_at: project.created_at,
-                                        updated_at: project.updated_at,
-                                        is_deleted: false,
-                                    }}
-                                />
+                                    <ProjectCard
+                                        key={project.id}
+                                        project={{
+                                            id: project.id,
+                                            name: project.name,
+                                            description: project.description,
+                                            logo_url: project.logo_url,
+                                            created_at: project.created_at,
+                                            updated_at: project.updated_at,
+                                            is_deleted: false,
+                                        }}
+                                    />
                             );
                         })}
                         <button
-                            className="flex w-1/4 flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-2 hover:bg-gray-50"
+                            className="flex flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-2 hover:bg-gray-50 max-h-[250px] min-h-[250px]"
                             onClick={() => setCreateProjectDialogOpened(true)}
                         >
                             <AiOutlinePlus className="text-4xl" />

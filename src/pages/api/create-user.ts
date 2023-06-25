@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         });
     } catch (error: unknown) {
         if (!(error instanceof AxiosError) || !error.response) {
-            console.log("error", error);
+            console.error("error", error);
             res.status(500).json({
                 error: "Internal Server Error",
                 message: "Something went wrong",
@@ -60,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                 data: null,
             });
         }
-        console.log("error", error);
+        console.error("error", error);
         res.status(500).json({
             error: "Internal Server Error",
             message: "Something went wrong",
