@@ -31,7 +31,7 @@ const ProjectCard = (props: IProps) => {
                 <div className="">
                     <div className="flex flex-row space-x-4">
                         <div className="h-15 w-20 overflow-hidden rounded-lg border-2 border-blue-300">
-                            <img src={project.logo_url} alt="img1" className="h-15 w-20 rounded-full" />
+                            <img src={project.logo_url || `https://robohash.org/${project.name}.png`} alt="img1" className="h-15 w-20 rounded-full" />
                         </div>
                         <div className="w-full">
                             <div className="w-full text-2xl">{project.name}</div>
@@ -107,7 +107,7 @@ const Projects = () => {
                                         id: project.id,
                                         name: project.name,
                                         description: project.description,
-                                        logo_url: project.logo_url || "https://robohash.org/pfp1.png",
+                                        logo_url: project.logo_url,
                                         created_at: project.created_at,
                                         updated_at: project.updated_at,
                                         is_deleted: false,
