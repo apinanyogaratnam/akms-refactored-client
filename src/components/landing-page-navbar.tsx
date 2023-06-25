@@ -3,8 +3,6 @@ import Link from "next/link";
 import { RiShieldKeyholeFill } from "react-icons/ri";
 
 import LinkButton from "./link-button";
-import Button from "./button";
-import { signOut } from "next-auth/react";
 
 const MdKeyboardArrowDown = dynamic(() => import("react-icons/md").then((mod) => mod.MdKeyboardArrowDown), {
     ssr: false,
@@ -27,7 +25,7 @@ const NavItem = (props: IProps) => {
     );
 };
 
-const NavBar = () => {
+const LandingPageNavBar = () => {
     return (
         <nav className="flex h-20 flex-row items-center justify-between">
             <div className="flex w-[60%] flex-row items-center justify-between">
@@ -37,15 +35,22 @@ const NavBar = () => {
                     </span>
                     AKMS
                 </Link>
-                <div className="flex w-[80%] flex-row justify-between"></div>
+                <div className="flex w-[80%] flex-row justify-between">
+                    <NavItem title="Products" />
+                    <NavItem title="Developer" />
+                    <NavItem title="Resources" />
+                    <NavItem title="Use Cases" />
+                    <NavItem title="Pricing" downArrow={false} href="/pricing" />
+                </div>
             </div>
-            <div className="w-[20%]">
+            <div className="w-[35%]">
                 <div className="flex flex-row justify-center space-x-4 p-2">
-                    <Button label="Sign Out" onClick={() => signOut()} arrow={false} />
+                    <div className="cursor-pointer p-2 text-lg hover:text-blue-600">Talk to an expert</div>
+                    <LinkButton />
                 </div>
             </div>
         </nav>
     );
 };
 
-export default NavBar;
+export default LandingPageNavBar;

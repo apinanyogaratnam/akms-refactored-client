@@ -4,7 +4,7 @@ import { CiCreditCardOff } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoGiftOutline } from "react-icons/io5";
 
-import Button from "./button";
+import LinkButton from "./link-button";
 
 interface LogoImageProps {
     src: string;
@@ -31,7 +31,7 @@ const MainContent = () => {
                 Integrate custom, secure, high-quality live video and voice to your product in just a few lines of code.
             </h1>
             <div className="mt-10 flex flex-row items-center justify-center space-x-4">
-                <Button />
+                <LinkButton />
                 <div className="flex cursor-pointer flex-row font-medium text-blue-600 hover:underline">
                     Talk to an expert
                     <span>

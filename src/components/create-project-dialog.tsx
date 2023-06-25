@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import { env } from "@/env.mjs";
+import { createProject } from "@/utils/create-project";
 
 import Spinner from "./spinner";
 
@@ -34,22 +35,13 @@ const CreateProjectDialog = (props: DialogProps) => {
         setIsLoading(true);
         try {
             // TODO: create middleware endpoint for this
-            await axios.post(
-                `https://akms-service.vercel.app/users/${userId}/projects`,
-                {
-                    name: name,
-                    description: description,
-                    website: website,
-                    logo_url: logoUrl,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-API-KEY": env.NEXT_PUBLIC_API_KEY,
-                    },
-                },
-            );
-            await queryClient.invalidateQueries(["api_keys"]);
+            await createProject(userId, {
+                name,
+                description,
+                website: website || null,
+                logoUrl: logoUrl || null,
+            });
+            await queryClient.invalidateQueries(["projects"]);
             setOpen(false);
         } catch (e) {
             console.error(e);
@@ -63,9 +55,7 @@ const CreateProjectDialog = (props: DialogProps) => {
             <div className="w-[30%] rounded-lg bg-white p-5">
                 <div className="flex w-full flex-col items-center justify-between space-y-4">
                     <h1 className="text-xl font-bold">{title}</h1>
-                    <p className="text-center text-gray-500">
-                        Create a new project
-                    </p>
+                    <p className="text-center text-gray-500">Create a new project</p>
                     <div>
                         <input
                             className="w-full rounded-md border border-gray-300 p-2"
@@ -74,19 +64,19 @@ const CreateProjectDialog = (props: DialogProps) => {
                             onChange={(e) => setName(e.target.value)}
                         />
                         <input
-                            className="w-full rounded-md border border-gray-300 p-2 mt-2"
+                            className="mt-2 w-full rounded-md border border-gray-300 p-2"
                             placeholder="Description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                         <input
-                            className="w-full rounded-md border border-gray-300 p-2 mt-2"
+                            className="mt-2 w-full rounded-md border border-gray-300 p-2"
                             placeholder="Website"
                             value={website}
                             onChange={(e) => setWebsite(e.target.value)}
                         />
                         <input
-                            className="w-full rounded-md border border-gray-300 p-2 mt-2"
+                            className="mt-2 w-full rounded-md border border-gray-300 p-2"
                             placeholder="Logo URL"
                             value={logoUrl}
                             onChange={(e) => setLogoUrl(e.target.value)}

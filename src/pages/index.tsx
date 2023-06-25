@@ -1,8 +1,8 @@
 import Head from "next/head";
 
 import Footer from "@/components/footer";
+import LandingPageNavBar from "@/components/landing-page-navbar";
 import MainContent from "@/components/main-content";
-import NavBar from "@/components/navbar";
 
 export default function Home() {
     return (
@@ -16,7 +16,7 @@ export default function Home() {
                 <meta name="robots" content="all" />
             </Head>
             <main>
-                <NavBar />
+                <LandingPageNavBar />
                 <hr className="border-1 w-full border-slate-200" />
                 <MainContent />
             </main>
