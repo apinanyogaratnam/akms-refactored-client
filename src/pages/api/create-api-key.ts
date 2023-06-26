@@ -16,13 +16,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     const userId = req.query.userId as string;
-    const { name, description } = req.body as { name: string; description: string };
+    const { name, description, projectId } = req.body as { name: string; description: string; projectId: number };
 
     const { data } = (await axios.post(
         `https://akms-service.vercel.app/users/${userId}/create-api-key`,
         {
             name,
             description,
+            projectId,
         },
         {
             headers: {

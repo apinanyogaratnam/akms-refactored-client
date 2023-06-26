@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { type GetSessionParams, getSession } from "next-auth/react";
 import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -7,12 +8,24 @@ import { toast } from "react-toastify";
 
 import Spinner from "@/components/spinner";
 import { type APIKey, type APIKeys } from "@/types/api-keys";
+import { type User } from "@/types/user";
 import { getAPIKeys } from "@/utils/get-api-keys";
+import { getUser } from "@/utils/get-user";
 
 const CreateAPIKeyDialog = dynamic(() => import("@/components/create-api-key-dialog"));
 const DeleteAPIKeyDialog = dynamic(() => import("@/components/delete-api-key-dialog"));
 
-const Profile = () => {
+interface IProps {
+    session: GetSessionParams;
+    userId: number;
+}
+
+const Profile = (props: IProps) => {
+    const { userId } = props;
+
+    const router = useRouter();
+    const { projectId } = router.query as { projectId: string };
+
     const [APIKeys, setAPIKeys] = useState<APIKey[]>([]);
     const [createAPIKeyDialogOpened, setCreateAPIKeyDialogOpened] = useState<boolean>(false);
     const [deleteAPIKeyDialogOpened, setDeleteAPIKeyDialogOpened] = useState<boolean>(false);
@@ -24,7 +37,7 @@ const Profile = () => {
         description: string;
     } | null>(null);
 
-    const { isLoading, isFetching, isRefetching } = useQuery(["api_keys"], async () => await getAPIKeys(1), {
+    const { isLoading, isFetching, isRefetching } = useQuery(["api_keys"], async () => await getAPIKeys(userId), {
         onSuccess: (data: APIKeys) => {
             setAPIKeys(data.api_keys);
         },
@@ -40,7 +53,12 @@ const Profile = () => {
             <div className="mx-auto flex w-full flex-row items-center justify-between p-2 md:w-[60%]">
                 <h1 className="ml-2 mt-5 text-center text-xl font-bold">API Keys</h1>
                 {createAPIKeyDialogOpened && (
-                    <CreateAPIKeyDialog title="Create API Key" setOpen={setCreateAPIKeyDialogOpened} />
+                    <CreateAPIKeyDialog
+                        title="Create API Key"
+                        setOpen={setCreateAPIKeyDialogOpened}
+                        userId={userId}
+                        projectId={projectId}
+                    />
                 )}
                 {deleteAPIKeyDialogOpened && selectedAPIKey && (
                     <DeleteAPIKeyDialog
@@ -69,7 +87,7 @@ const Profile = () => {
                 </div>
             ) : (
                 <>
-                    {APIKeys.length !== 0 ? (
+                    {APIKeys && APIKeys.length !== 0 ? (
                         <>
                             {APIKeys.map((APIKey) => (
                                 <div key={APIKey.id} className="mx-auto w-full p-2 md:w-[60%]">
@@ -115,7 +133,18 @@ const Profile = () => {
 export async function getServerSideProps(context: GetSessionParams) {
     const session = await getSession(context);
 
-    if (!session) {
+    if (!session || !session.user || !session.user.email) {
+        return {
+            redirect: {
+                destination: "/signup",
+                permanent: false,
+            },
+        };
+    }
+
+    const user = (await getUser(session.user.email)) as unknown as { data: User };
+
+    if (!user || !user.data || !user.data.id) {
         return {
             redirect: {
                 destination: "/signup",
@@ -125,7 +154,7 @@ export async function getServerSideProps(context: GetSessionParams) {
     }
 
     return {
-        props: { session },
+        props: { session, userId: user.data.id },
     };
 }
 

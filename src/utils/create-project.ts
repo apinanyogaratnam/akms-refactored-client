@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import { env } from "@/env.mjs";
-
 type Project = {
     name: string;
     description: string;

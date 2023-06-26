@@ -7,8 +7,8 @@ export type Project = {
     website?: string | null;
     logo_url?: string | null;
     is_deleted: boolean;
-    created_at: string;
-    updated_at: string;
+    created_at: number;
+    updated_at: number;
 };
 
 export type Projects = {

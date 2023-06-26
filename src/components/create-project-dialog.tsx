@@ -1,9 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import { env } from "@/env.mjs";
 import { createProject } from "@/utils/create-project";
 
 import Spinner from "./spinner";
@@ -13,7 +11,7 @@ interface DialogProps {
     setOpen: (open: boolean) => void;
     userId: number;
 }
-// TODO: finish this
+
 const CreateProjectDialog = (props: DialogProps) => {
     const { title, setOpen, userId } = props;
 
@@ -51,7 +49,7 @@ const CreateProjectDialog = (props: DialogProps) => {
     };
 
     return (
-        <div className="fixed left-0 top-0 flex h-full w-full flex-row items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed left-0 top-0 z-10 flex h-full w-full flex-row items-center justify-center bg-black bg-opacity-50">
             <div className="w-[30%] rounded-lg bg-white p-5">
                 <div className="flex w-full flex-col items-center justify-between space-y-4">
                     <h1 className="text-xl font-bold">{title}</h1>

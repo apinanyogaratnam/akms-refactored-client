@@ -10,3 +10,7 @@
 
 <!-- TODO: complete all todos -->
 <!-- TODO: change all urls to use env vars -->
+<!-- TODO: change delete dialog delete button to red and cancel to grey for all dialogs -->
+<!-- TODO: add dark mode -->
+<!-- TODO: change img to Image -->
+<!-- TODO: fix all unknowns where necessary -->

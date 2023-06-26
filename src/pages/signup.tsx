@@ -1,11 +1,9 @@
-import axios from "axios";
 import { type GetServerSidePropsContext, type InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { getProviders, signIn } from "next-auth/react";
 
-import { type Response } from "@/types/response";
 import { createUser } from "@/utils/create-user";
 import { getUser } from "@/utils/get-user";
 

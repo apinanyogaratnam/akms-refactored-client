@@ -9,6 +9,8 @@ import Spinner from "./spinner";
 interface DialogProps {
     title: string;
     setOpen: (open: boolean) => void;
+    userId: number;
+    projectId: string;
 }
 
 type AxiosResponse = {
@@ -23,7 +25,7 @@ type APIKey = {
 };
 
 const CreateAPIKeyDialog = (props: DialogProps) => {
-    const { title, setOpen } = props;
+    const { title, setOpen, userId, projectId } = props;
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [api_key, setApiKey] = useState<string>("");
@@ -42,12 +44,14 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
 
         setIsLoading(true);
 
-        const userId = 1;
         try {
-            const { data }: AxiosResponse = await axios.post(`/api/create-api-key?userId=${userId}`, {
-                name,
-                description,
-            });
+            const { data }: AxiosResponse = await axios.post(
+                `/api/create-api-key?userId=${userId}&projectId=${projectId}`,
+                {
+                    name,
+                    description,
+                },
+            );
             await queryClient.invalidateQueries(["api_keys"]);
             setApiKey(data.api_key);
         } catch (e) {
