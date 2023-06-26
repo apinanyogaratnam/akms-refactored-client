@@ -6,12 +6,12 @@ import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
 
+import NavBar from "@/components/navbar";
 import Spinner from "@/components/spinner";
 import { type APIKey, type APIKeys } from "@/types/api-keys";
 import { type User } from "@/types/user";
 import { getAPIKeys } from "@/utils/get-api-keys";
 import { getUser } from "@/utils/get-user";
-import NavBar from "@/components/navbar";
 
 const CreateAPIKeyDialog = dynamic(() => import("@/components/create-api-key-dialog"));
 const DeleteAPIKeyDialog = dynamic(() => import("@/components/delete-api-key-dialog"));
@@ -73,6 +73,8 @@ const Profile = (props: IProps) => {
                             setOpen={setDeleteAPIKeyDialogOpened}
                             api_key_id={selectedAPIKey.id}
                             api_key_title={selectedAPIKey.name}
+                            userId={userId}
+                            projectId={projectId}
                         />
                     )}
                     <button

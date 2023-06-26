@@ -44,8 +44,6 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
 
         setIsLoading(true);
 
-        alert(`project_id: ${projectId}`);
-
         try {
             const { data }: AxiosResponse = await axios.post(
                 `/api/create-api-key?userId=${userId}&projectId=${projectId}`,
@@ -62,6 +60,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
         }
 
         setIsLoading(false);
+        setOpen(false);
     };
 
     const copyToClipboard = async () => {

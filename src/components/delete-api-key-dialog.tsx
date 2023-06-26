@@ -12,33 +12,34 @@ interface DialogProps {
     setOpen: (open: boolean) => void;
     api_key_id: number;
     api_key_title: string;
+    userId: number;
+    projectId: string;
 }
 
 const DeleteAPIKeyDialog = (props: DialogProps) => {
-    const { title, setOpen, api_key_id, api_key_title } = props;
+    const { title, setOpen, api_key_id, api_key_title, userId, projectId } = props;
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const queryClient = useQueryClient();
 
     const handleSubmit = async (): Promise<void> => {
-        const userId = 1;
         setIsLoading(true);
         try {
-            // TODO: create middleware endpoint for this
-            await axios.delete(`https://akms-service.vercel.app/users/${userId}/api-keys/${api_key_id}`, {
+            await axios.delete(`/api/delete-api-key?api_key_id=${api_key_id}&userId=${userId}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "X-API-KEY": env.NEXT_PUBLIC_API_KEY,
                 },
             });
-            await queryClient.invalidateQueries(["api_keys"]);
+            await queryClient.invalidateQueries(["api_keys", userId, projectId]);
             setOpen(false);
         } catch (e) {
             console.error(e);
             toast.error("Something went wrong");
         }
         setIsLoading(false);
+        setOpen(false);
     };
 
     return (

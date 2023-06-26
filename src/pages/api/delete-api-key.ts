@@ -14,10 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         return;
     }
 
-    const userId = req.query.userId as string;
-    const api_key_id = req.query.api_key_id as string;
+    const { userId, api_key_id } = req.query as { userId: string; api_key_id: string };
 
-    await axios.delete(`https://akms-service.vercel.app/users/${userId}/api-keys/${api_key_id}`, {
+    await axios.delete(`${env.API_BASE_URL}/users/${userId}/api-keys/${api_key_id}`, {
         headers: {
             "Content-Type": "application/json",
             "X-API-KEY": env.NEXT_PUBLIC_API_KEY,
