@@ -44,6 +44,8 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
 
         setIsLoading(true);
 
+        alert(`project_id: ${projectId}`);
+
         try {
             const { data }: AxiosResponse = await axios.post(
                 `/api/create-api-key?userId=${userId}&projectId=${projectId}`,
@@ -52,7 +54,7 @@ const CreateAPIKeyDialog = (props: DialogProps) => {
                     description,
                 },
             );
-            await queryClient.invalidateQueries(["api_keys"]);
+            await queryClient.invalidateQueries(["api_keys", userId, projectId]);
             setApiKey(data.api_key);
         } catch (e) {
             console.error(e);

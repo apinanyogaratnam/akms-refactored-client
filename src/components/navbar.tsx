@@ -39,6 +39,9 @@ const NavBar = () => {
                 </Link>
                 <div className="flex w-[80%] flex-row justify-between"></div>
             </div>
+            <Link className="cursor-pointer hover:text-blue-600" href="/projects">
+                Projects
+            </Link>
             <div className="w-[20%]">
                 <div className="flex flex-row justify-center space-x-4 p-2">
                     <Button label="Sign Out" onClick={() => signOut()} arrow={false} />
