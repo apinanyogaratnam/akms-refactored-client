@@ -8,7 +8,7 @@
 
 # api key section to call the endpoint using generated api keys (maybe email the key to the user)
 
-<!-- TODO: complete all todos -->
+<!-- TODO: complete all TODOs -->
 <!-- TODO: change all urls to use env vars -->
 <!-- TODO: change delete dialog delete button to red and cancel to grey for all dialogs -->
 <!-- TODO: add dark mode -->
